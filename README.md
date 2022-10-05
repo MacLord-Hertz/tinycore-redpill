@@ -1,37 +1,41 @@
-# tinycore-redpill
-This is a testing version. Do not use unless you are certain you have no data to lose.
+./rploader.sh update now
+./rploader.sh fullupgrade now
+./rploader.sh serialgen DS3622xs+
 
-Please note that minimum recommended memory size for configuring the loader is 2GB
+./rploader.sh ext broadwellnk-7.0.1-42218 add https://raw.githubusercontent.com/pocopico/rp-ext/master/arcmsr/rpext-index.json
 
-# Instructions 
+./rploader.sh identifyusb now
+ XXXXX ./rploader.sh satamap now 
 
-A normal build process would start with :
+"SataPortMap": "4"    "9"
+"DiskIdxMap": "00"    "0"
+"netif_num": "1",
 
-1. Image burn
+./rploader.sh ext broadwellnk-7.0.1-42218 add https://raw.githubusercontent.com/pocopico/rp-ext/master/r8101/rpext-index.json
 
-a. For physical gunzip and burn img file to usb stick
+./rploader.sh ext broadwellnk-7.0.1-42218 add https://raw.githubusercontent.com/pocopico/rp-ext/master/r8125/rpext-index.json
 
-b. For virtual gunzip and use the provided vmdk file 
+./rploader.sh ext broadwellnk-7.0.1-42218 add https://raw.githubusercontent.com/pocopico/rp-ext/master/r8152/rpext-index.json
 
-2. Boot tinycore
+./rploader.sh ext broadwellnk-7.0.1-42218 add https://raw.githubusercontent.com/pocopico/rp-ext/master/r8168/rpext-index.json
 
-3. ssh to your booted loader or just open the desktop terminal 
+./rploader.sh ext broadwellnk-7.0.1-42218 add https://raw.githubusercontent.com/pocopico/rp-ext/master/r8169/rpext-index.json
 
-4. Bring over your json files (global_config.json,custom_config.json, user_config.json )
+./rploader.sh ext broadwellnk-7.0.1-42218 add https://raw.githubusercontent.com/pocopico/rp-ext/master/igp/rpext-index.json
 
-5. Check the contents of user_config.json, if satisfied keep or else run :
+./rploader.sh ext broadwellnk-7.0.1-42218 add https://raw.githubusercontent.com/pocopico/rp-ext/master/e1000/rpext-index.json
 
-a. Perform a rploader update by running ./rploader update 
+./rploader.sh ext broadwellnk-7.0.1-42218 add https://raw.githubusercontent.com/pocopico/rp-ext/master/e1000e/rpext-index.json
 
-b. Perform a fullupdate to update all local files of your image by running ./rploader.sh fullupgrade
+./rploader.sh ext broadwellnk-7.0.1-42218 add https://raw.githubusercontent.com/pocopico/rp-ext/master/mpt3sas/rpext-index.json
 
-c. Change you serial and mac address by running ./rploader.sh serialgen DS3615xs, if you want to use WoL you can use realmac option here e.g. ./rploader.sh serialgen DS3515xs realmac
+./rploader.sh build broadwellnk-7.1.0-42661
 
-d. Update user_config.json with your VID:PID of your usb stick by running ./rploader.sh identifyusb
+exec sudo reboot
 
-e. Update user_config.json with your SataPortMap and DiskIdxMap by running ./rploader.sh satamap 
+./rploader.sh clean now
+./rploader.sh build broadwellnk-7.1.0-42661
 
-f. Backup your changes to local loader disk by running  ./rploader.sh backup
+./rploader.sh clean now; rm -rf /mnt/sdb3/auxfiles; rm -rf /home/tc/custom-module; ./rploader.sh backup now;
 
-
-6. ./rploader.sh build bromolow-7.0.1-42218
+exec sudo reboot
