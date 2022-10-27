@@ -43,7 +43,7 @@ jobs:
           echo '---start Update---'
           mkdir /opt/images 
           cd /opt/images/
-          URLS="`curl -s https://api.github.com/repos/pocopico/tinycore-redpill/releases/tags/v0.9.2.3 | jq -r -e .assets[].browser_download_url`"
+          URLS="`curl -s https://api.github.com/repos/pocopico/tinycore-redpill/releases/tags/v0.9.2.8 | jq -r -e .assets[].browser_download_url`"
           for file in $URLS; do curl --insecure --silent --location "$file" -O ; done
           ls -ltr 
           gunzip *.gz
@@ -64,7 +64,7 @@ jobs:
           workfile="`ls  $srcdir/*uefi*`"
           mv $workfile $workdir
           workfile="`ls *uefi*`"
-          imgversion="`ls $workfile | cut -c 23-29`"
+          imgversion="`ls $workfile | cut -c 23-30`"
           imgfile="`echo $workfile | sed -e 's/.gz//g'`"
           echo "Found workfile : $workfile , imgversion : $imgversion copying from $srcdir to $workdir"
           sudo losetup -fP ./$imgfile
@@ -121,7 +121,7 @@ jobs:
           workfile="`ls $srcdir/tinycore-redpill.*.img*`"
           mv $workfile $workdir
           workfile="`ls tinycore-redpill.*.img*`"
-          imgversion="`ls $workfile | cut -c 18-24`"
+          imgversion="`ls $workfile | cut -c 18-25`"
           imgfile="`echo $workfile | sed -e 's/.gz//g'`"
           echo "Found workfile : $workfile , imgversion : $imgversion copying from $srcdir to $workdir"
           sudo losetup -fP ./$imgfile
